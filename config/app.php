@@ -68,7 +68,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '323ca27a65b3a4d07f2fde12c2472b385e2cc896152bfff1abe042fed10bb220'),
+        'salt' => env('SECURITY_SALT', '609a3555775b4d258483bf6c684907ef0e3768ff569d8d93e28ba73a4cc052e4'),
     ],
 
     /**
@@ -81,6 +81,7 @@ return [
      */
     'Asset' => [
         //'timestamp' => true,
+        // 'cacheTime' => '+1 year'
     ],
 
     /**
@@ -247,16 +248,16 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host' => 'localhost',
+            'host' => 'us-cdbr-iron-east-01.cleardb.net',
             /*
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
-            //'port' => 'non_standard_port_number',
-            'username' => 'my_app',
-            'password' => 'jabuticaba',
-            'database' => 'my_app',
+            'port' => '3306',
+            'username' => 'b20108ec9c0783',
+            'password' => 'c3512605',
+            'database' => 'heroku_cf737908acbff77',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */

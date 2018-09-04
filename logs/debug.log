@@ -1,10 +1,9 @@
-2018-08-27 17:39:20 Notice: Notice (8): Undefined variable: user in [C:\xampp\htdocs\bolo\src\Template\Users\register.ctp, line 5]
-Request URL: /users/register
-Referer URL: http://localhost/bolo/users/login
+2018-09-02 07:22:24 Notice: Notice (8): Array to string conversion in [C:\xampp\htdocs\eODAA\bookmarker\src\Template\Users\login.ctp, line 8]
+Request URL: /users/login
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 Cake\Core\BasePlugin::{closure}() - ROOT\vendor\cakephp\debug_kit\config\bootstrap.php, line 41
-include - APP/Template\Users\register.ctp, line 5
+include - APP/Template\Users\login.ctp, line 8
 Cake\View\View::_evaluate() - CORE\src\View\View.php, line 1240
 Cake\View\View::_render() - CORE\src\View\View.php, line 1201
 Cake\View\View::render() - CORE\src\View\View.php, line 803
@@ -29,9 +28,8 @@ Cake\Http\Server::run() - CORE\src\Http\Server.php, line 98
 
 
 
-2018-08-27 17:40:09 Notice: Notice (8): Undefined variable: user in [C:\xampp\htdocs\bolo\src\Template\Users\register.ctp, line 5]
+2018-09-02 07:34:19 Notice: Notice (8): Undefined variable: user in [C:\xampp\htdocs\eODAA\bookmarker\src\Template\Users\register.ctp, line 5]
 Request URL: /users/register
-Referer URL: http://localhost/bolo/users/login
 Trace:
 Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 159
 Cake\Core\BasePlugin::{closure}() - ROOT\vendor\cakephp\debug_kit\config\bootstrap.php, line 41

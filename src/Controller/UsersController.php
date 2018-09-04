@@ -21,6 +21,9 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Addresses']
+        ];
         $users = $this->paginate($this->Users);
 
         $this->set(compact('users'));
@@ -36,7 +39,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Cursos']
+            'contain' => ['Addresses', 'EducationalInstitutions']
         ]);
 
         $this->set('user', $user);
@@ -59,7 +62,9 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+        $addresses = $this->Users->Addresses->find('list', ['limit' => 200]);
+        $educationalInstitutions = $this->Users->EducationalInstitutions->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'addresses', 'educationalInstitutions'));
     }
 
     /**
@@ -72,7 +77,7 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => ['EducationalInstitutions']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -83,7 +88,9 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+        $addresses = $this->Users->Addresses->find('list', ['limit' => 200]);
+        $educationalInstitutions = $this->Users->EducationalInstitutions->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'addresses', 'educationalInstitutions'));
     }
 
     /**
@@ -106,22 +113,21 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    //Login
     public function login(){
-        if($this->request->is('post')){
+        if ($this->request->is('post')){
             $user = $this->Auth->identify();
-            if($user){
+            if ($user){
                 $this->Auth->setUser($user);
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect($this->Auth->redirectUrl());
             }
-            // Bad Login
-            $this->Flash->error('Incorrect Login');
+
+            # Usuario nao foi identificado
+            $this->Flash->error("Your username or password is incorrect");
         }
     }
 
-    //Logout
     public function logout(){
-        $this->Flash->success('You are logged out');
+        $this->Flash->success('You are now logged out.');
         return $this->redirect($this->Auth->logout());
     }
 
@@ -129,19 +135,18 @@ class UsersController extends AppController
         $user = $this->Users->newEntity();
         if($this->request->is('post')){
             $user = $this->Users->patchEntity($user, $this->request->data);
-            if($this->Users->save($user)){
-                $this->Flash->success('You are registered and can log in.');
-                return $this->redirect(['action' => 'login']);
+            if ($this->Users->save($user)){
+                $this->Flash->success('You are registered and can log in!');
+                return $this->redirect(['action' => 'login']);         
             } else {
-                $this->Flash->error('You are not registered.');
+                $this->Flash->error('You are not registered');
             }
         }
         $this->set(compact('user'));
-        $this->set('_serializee', ['user']);
+        $this->set('_serialize', ['user']);
+
     }
 
-
-    #funcao para dar acesso a paginas a qualquer guest, mesmo sem estar logado
     public function beforeFilter(Event $event){
         $this->Auth->allow(['register']);
     }

@@ -8,13 +8,18 @@ use Cake\Auth\DefaultPasswordHasher;
  * User Entity
  *
  * @property int $id
- * @property string $username
+ * @property string $name
  * @property string $email
  * @property string $password
+ * @property string $cpf
+ * @property string $phone_number
+ * @property string $scholarity
+ * @property int $address_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\Curso[] $cursos
+ * @property \App\Model\Entity\Address $address
+ * @property \App\Model\Entity\EducationalInstitution[] $educational_institutions
  */
 class User extends Entity
 {
@@ -29,12 +34,17 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'username' => true,
+        'name' => true,
         'email' => true,
         'password' => true,
+        'cpf' => true,
+        'phone_number' => true,
+        'scholarity' => true,
+        'address_id' => true,
         'created' => true,
         'modified' => true,
-        'cursos' => true
+        'address' => true,
+        'educational_institutions' => true
     ];
 
     /**
@@ -46,7 +56,8 @@ class User extends Entity
         'password'
     ];
 
-    protected function _setPassword($password){
-        return (new DefaultPasswordHasher)->hash($password);
+    protected function _setPassword($value){
+        $hasher = new DefaultPasswordHasher();
+        return $hasher->hash($value);
     }
 }
