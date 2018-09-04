@@ -9,7 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \App\Model\Table\CursosTable|\Cake\ORM\Association\HasMany $Cursos
+ * @property \App\Model\Table\AddressesTable|\Cake\ORM\Association\BelongsTo $Addresses
+ * @property \App\Model\Table\EducationalInstitutionsTable|\Cake\ORM\Association\BelongsToMany $EducationalInstitutions
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -36,13 +37,19 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->setTable('users');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Cursos', [
-            'foreignKey' => 'user_id'
+        $this->belongsTo('Addresses', [
+            'foreignKey' => 'address_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsToMany('EducationalInstitutions', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'educational_institution_id',
+            'joinTable' => 'users_educational_institutions'
         ]);
     }
 
@@ -59,10 +66,10 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('username')
-            ->maxLength('username', 255)
-            ->requirePresence('username', 'create')
-            ->notEmpty('username');
+            ->scalar('name')
+            ->maxLength('name', 255)
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
 
         $validator
             ->email('email')
@@ -74,6 +81,24 @@ class UsersTable extends Table
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmpty('password');
+
+        $validator
+            ->scalar('cpf')
+            ->maxLength('cpf', 255)
+            ->requirePresence('cpf', 'create')
+            ->notEmpty('cpf');
+
+        $validator
+            ->scalar('phone_number')
+            ->maxLength('phone_number', 255)
+            ->requirePresence('phone_number', 'create')
+            ->notEmpty('phone_number');
+
+        $validator
+            ->scalar('scholarity')
+            ->maxLength('scholarity', 255)
+            ->requirePresence('scholarity', 'create')
+            ->notEmpty('scholarity');
 
         return $validator;
     }
@@ -87,8 +112,8 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
         $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['address_id'], 'Addresses'));
 
         return $rules;
     }

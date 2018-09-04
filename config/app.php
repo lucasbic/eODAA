@@ -68,7 +68,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => env('SECURITY_SALT', '323ca27a65b3a4d07f2fde12c2472b385e2cc896152bfff1abe042fed10bb220'),
+        'salt' => env('SECURITY_SALT', '609a3555775b4d258483bf6c684907ef0e3768ff569d8d93e28ba73a4cc052e4'),
     ],
 
     /**
@@ -81,6 +81,7 @@ return [
      */
     'Asset' => [
         //'timestamp' => true,
+        // 'cacheTime' => '+1 year'
     ],
 
     /**

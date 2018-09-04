@@ -3,10 +3,13 @@
 	<div class="panel">
 		<h2 class="text-center">Please Register</h2>
 		<?= $this->Form->create($user); ?>
-			<?= $this->Form->input('username'); ?>
-			<?= $this->Form->input('email'); ?>
-			<?= $this->Form->input('password', array('type' => 'password')); ?>
-			<?= $this->Form->submit('Register', array('class' => 'button')); ?>
+			<?= $this->Form->input('name');?>
+			<?= $this->Form->input('email');?>
+			<?= $this->Form->input('password', array('type' => 'password'));?>
+			<?= $this->Form->input('cpf');?>
+			<?= $this->Form->input('phone_number');?>
+			<?= $this->Form->input('scholarity');?>
+			<?= $this->Form->button('Register', array('class' => 'button'));?>
 		<?= $this->Form->end(); ?>
 	</div>
 </div>
