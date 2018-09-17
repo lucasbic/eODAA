@@ -24,7 +24,7 @@ class UsersFixture extends TestFixture
         'cpf' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'phone_number' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'scholarity' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'address_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'address_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
@@ -58,8 +58,8 @@ class UsersFixture extends TestFixture
                 'phone_number' => 'Lorem ipsum dolor sit amet',
                 'scholarity' => 'Lorem ipsum dolor sit amet',
                 'address_id' => 1,
-                'created' => '2018-09-02 03:13:28',
-                'modified' => '2018-09-02 03:13:28'
+                'created' => '2018-09-17 03:30:52',
+                'modified' => '2018-09-17 03:30:52'
             ],
         ];
         parent::init();

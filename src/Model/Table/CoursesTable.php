@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\KnowledgeAreasTable|\Cake\ORM\Association\BelongsTo $KnowledgeAreas
  * @property \App\Model\Table\EducationalInstitutionsTable|\Cake\ORM\Association\BelongsTo $EducationalInstitutions
  * @property \App\Model\Table\LecturesTable|\Cake\ORM\Association\HasMany $Lectures
+ * @property |\Cake\ORM\Association\BelongsToMany $Users
  *
  * @method \App\Model\Entity\Course get($primaryKey, $options = [])
  * @method \App\Model\Entity\Course newEntity($data = null, array $options = [])
@@ -49,6 +50,11 @@ class CoursesTable extends Table
         ]);
         $this->hasMany('Lectures', [
             'foreignKey' => 'course_id'
+        ]);
+        $this->belongsToMany('Users', [
+            'foreignKey' => 'course_id',
+            'targetForeignKey' => 'user_id',
+            'joinTable' => 'users_courses'
         ]);
     }
 
@@ -92,13 +98,5 @@ class CoursesTable extends Table
         $rules->add($rules->existsIn(['educational_institution_id'], 'EducationalInstitutions'));
 
         return $rules;
-    }
-
-    public function findInstitution(Query $query, array $options) {
-        return $this->find()
-            ->distinct(['Courses.id'])
-            ->matching('EducationalInstitutions', function($q) use ($options) {
-            return $q->where(['EducationalInstitutions.name IN' => $options['educationalinstitutions']]);
-        });
     }
 }
