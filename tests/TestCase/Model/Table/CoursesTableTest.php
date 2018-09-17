@@ -83,4 +83,14 @@ class CoursesTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test findInstitution method
+     *
+     * @return void
+     */
+    public function testFindInstitution()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

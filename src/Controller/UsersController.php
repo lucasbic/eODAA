@@ -118,9 +118,9 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user){
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                return $this->redirect($this->Auth->redirectUrl('/users'));
             }
-
+            
             # Usuario nao foi identificado
             $this->Flash->error("Your username or password is incorrect");
         }
@@ -144,7 +144,6 @@ class UsersController extends AppController
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
-
     }
 
     public function beforeFilter(Event $event){

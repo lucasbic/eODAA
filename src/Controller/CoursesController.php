@@ -113,7 +113,6 @@ class CoursesController extends AppController
     }
 
     public function educationalinstitutions(){
-
         # pegando parametros passados na url
         $educationalinstitutions = $this->request->params['pass'];
 
@@ -125,7 +124,5 @@ class CoursesController extends AppController
             'courses' => $courses,
             'educationalinstitutions' => $educationalinstitutions
         ]);
-
-
     }
 }

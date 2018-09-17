@@ -25,7 +25,7 @@
             echo $this->Form->control('cpf');
             echo $this->Form->control('phone_number');
             echo $this->Form->control('scholarity');
-            echo $this->Form->control('address_id', ['options' => $addresses]);
+            echo $this->Form->control('address_id', ['options' => $addresses, 'empty' => true]);
             echo $this->Form->control('educational_institutions._ids', ['options' => $educationalInstitutions]);
         ?>
     </fieldset>

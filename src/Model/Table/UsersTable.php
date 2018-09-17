@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \App\Model\Table\AddressesTable|\Cake\ORM\Association\BelongsTo $Addresses
+ * @property |\Cake\ORM\Association\BelongsToMany $Courses
  * @property \App\Model\Table\EducationalInstitutionsTable|\Cake\ORM\Association\BelongsToMany $EducationalInstitutions
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -43,8 +44,12 @@ class UsersTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Addresses', [
-            'foreignKey' => 'address_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'address_id'
+        ]);
+        $this->belongsToMany('Courses', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'course_id',
+            'joinTable' => 'users_courses'
         ]);
         $this->belongsToMany('EducationalInstitutions', [
             'foreignKey' => 'user_id',
