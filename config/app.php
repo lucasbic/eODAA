@@ -254,10 +254,10 @@ return [
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
-            'port' => '3306',
-            'username' => 'b20108ec9c0783',
-            'password' => 'c3512605',
-            'database' => 'heroku_cf737908acbff77',
+            'port' => getenv('DB_PORT'),
+            'username' => getenv('DB_USERNAME'),
+            'password' => getenv('DB_PW'),
+            'database' => getenv('DB_NAME'),
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */
