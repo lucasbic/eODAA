@@ -1,7 +1,9 @@
 <?php
 $host = (getenv('DB_HOST') ?? 'localhost');
-
-
+$username = (getenv('DB_USERNAME') ?? 'root');
+$password = (getenv('DB_PW') ?? '');
+$database = (getenv('DB_NAME') ?? 'eodaa');
+if (getenv('DB_PORT')) $port = getenv('DB_PORT'); else $port = 3307;
 
 return [
     /**
@@ -258,10 +260,10 @@ return [
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
-            'port' => getenv('DB_PORT'),
-            'username' => getenv('DB_USERNAME'),
-            'password' => getenv('DB_PW'),
-            'database' => getenv('DB_NAME'),
+            'port' => $port,
+            'username' => $username,
+            'password' => $password,
+            'database' => $database,
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */
