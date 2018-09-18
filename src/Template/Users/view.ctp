@@ -66,14 +66,11 @@
 
 
 
-################################################################# Add code
-
-<div class="container">
     <div class="row">
-        <h2>Create your snippet's HTML, CSS and Javascript in the editor tabs</h2>
+        <h2>Minha página de perfil</h2>
         
         
-       <div class="col-md-7 ">
+       <div class="col-md-12 ">
 
 <div class="panel panel-default">
   <div class="panel-heading">  <h4 >User Profile</h4></div>
@@ -102,46 +99,46 @@
               <!-- /input-group -->
             </div>
             <div class="col-sm-6">
-            <h4 style="color:#00b1b1;">Prasad Shankar Huddedar </h4></span>
+            <h4 style="color:#00b1b1;"><?= h($user->name) ?></h4></span>
               <span><p>Aspirant</p></span>            
             </div>
             <div class="clearfix"></div>
             <hr style="margin:5px 0 5px 0;">
     
               
-<div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 ">Prasad</div>
+<div class="col-sm-5 col-xs-6 tital " >Nome:</div><div class="col-sm-7 col-xs-6 "><?= h($user->name) ?></div>
      <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Middle Name:</div><div class="col-sm-7"> Shankar</div>
+<div class="col-sm-5 col-xs-6 tital " >Email:</div><div class="col-sm-7"> <?= h($user->email) ?></div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> Huddedar</div>
+<div class="col-sm-5 col-xs-6 tital " >Senha:</div><div class="col-sm-7"> <?= h($user->password) ?></div>
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Date Of Joining:</div><div class="col-sm-7">15 Jun 2016</div>
-
-  <div class="clearfix"></div>
-<div class="bot-border"></div>
-
-<div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div><div class="col-sm-7">11 Jun 1998</div>
+<div class="col-sm-5 col-xs-6 tital " >CPF:</div><div class="col-sm-7"><?= h($user->cpf) ?></div>
 
   <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Place Of Birth:</div><div class="col-sm-7">Shirdi</div>
+<div class="col-sm-5 col-xs-6 tital " >Telefone:</div><div class="col-sm-7"><?= h($user->phone_number) ?></div>
+
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Escolaridade:</div><div class="col-sm-7"><?= h($user->scholarity) ?></div>
 
  <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Nationality:</div><div class="col-sm-7">Indian</div>
+<div class="col-sm-5 col-xs-6 tital " >Endereço:</div><div class="col-sm-7"><?= h($user->address->id) ?></div>
 
  <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Relition:</div><div class="col-sm-7">Hindu</div>
+<div class="col-sm-5 col-xs-6 tital " >ID:</div><div class="col-sm-7"><?= h($user->id) ?></div>
 
 
             <!-- /.box-body -->
@@ -163,9 +160,7 @@
               </script> 
    
    </div>
-</div>
 
-################################################### Add code
 
 
     <div class="related">
