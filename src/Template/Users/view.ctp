@@ -133,12 +133,22 @@
  <div class="clearfix"></div>
 <div class="bot-border"></div>
 
-<div class="col-sm-5 col-xs-6 tital " >Endereço:</div><div class="col-sm-7"><?= h($user->address->id) ?></div>
+<div class="col-sm-5 col-xs-6 tital " >Endereço:</div><div class="col-sm-7"><?= h($user->address) ?></div>
 
  <div class="clearfix"></div>
 <div class="bot-border"></div>
 
 <div class="col-sm-5 col-xs-6 tital " >ID:</div><div class="col-sm-7"><?= h($user->id) ?></div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Criado em:</div><div class="col-sm-7"><?= h($user->created) ?></div>
+
+ <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Modificado em:</div><div class="col-sm-7"><?= h($user->modified) ?></div>
 
 
             <!-- /.box-body -->
