@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ClassesTable;
+use App\Model\Table\AccessLevelsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ClassesTable Test Case
+ * App\Model\Table\AccessLevelsTable Test Case
  */
-class ClassesTableTest extends TestCase
+class AccessLevelsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\ClassesTable
+     * @var \App\Model\Table\AccessLevelsTable
      */
-    public $Classes;
+    public $AccessLevels;
 
     /**
      * Fixtures
@@ -24,8 +24,8 @@ class ClassesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.classes',
-        'app.courses'
+        'app.access_levels',
+        'app.users'
     ];
 
     /**
@@ -36,8 +36,8 @@ class ClassesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Classes') ? [] : ['className' => ClassesTable::class];
-        $this->Classes = TableRegistry::getTableLocator()->get('Classes', $config);
+        $config = TableRegistry::getTableLocator()->exists('AccessLevels') ? [] : ['className' => AccessLevelsTable::class];
+        $this->AccessLevels = TableRegistry::getTableLocator()->get('AccessLevels', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class ClassesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Classes);
+        unset($this->AccessLevels);
 
         parent::tearDown();
     }
@@ -68,16 +68,6 @@ class ClassesTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

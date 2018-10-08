@@ -27,6 +27,10 @@
             <td><?= $lecture->has('course') ? $this->Html->link($lecture->course->name, ['controller' => 'Courses', 'action' => 'view', $lecture->course->id]) : '' ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Description') ?></th>
+            <td><?= h($lecture->description) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($lecture->id) ?></td>
         </tr>

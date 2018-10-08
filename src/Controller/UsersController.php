@@ -22,7 +22,7 @@ class UsersController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Addresses']
+            'contain' => ['Addresses', 'AccessLevels', 'Courses']
         ];
         $users = $this->paginate($this->Users);
 
@@ -39,7 +39,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Addresses', 'EducationalInstitutions']
+            'contain' => ['Addresses', 'AccessLevels', 'Courses', 'EducationalInstitutions', 'Courses.KnowledgeAreas', 'Courses.EducationalInstitutions']
         ]);
 
         $this->set('user', $user);
@@ -63,8 +63,10 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $addresses = $this->Users->Addresses->find('list', ['limit' => 200]);
+        $accessLevels = $this->Users->AccessLevels->find('list', ['limit' => 200]);
+        $courses = $this->Users->Courses->find('list', ['limit' => 200]);
         $educationalInstitutions = $this->Users->EducationalInstitutions->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'addresses', 'educationalInstitutions'));
+        $this->set(compact('user', 'addresses', 'accessLevels', 'courses', 'educationalInstitutions'));
     }
 
     /**
@@ -77,7 +79,7 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['EducationalInstitutions']
+            'contain' => ['Courses', 'EducationalInstitutions']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -89,8 +91,10 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $addresses = $this->Users->Addresses->find('list', ['limit' => 200]);
+        $accessLevels = $this->Users->AccessLevels->find('list', ['limit' => 200]);
+        $courses = $this->Users->Courses->find('list', ['limit' => 200]);
         $educationalInstitutions = $this->Users->EducationalInstitutions->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'addresses', 'educationalInstitutions'));
+        $this->set(compact('user', 'addresses', 'accessLevels', 'courses', 'educationalInstitutions'));
     }
 
     /**
@@ -113,33 +117,39 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
+    //Função de Login
     public function login(){
-        if ($this->request->is('post')){
+        if($this->request->is('post')){
             $user = $this->Auth->identify();
-            if ($user){
+            if($user){
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl('/users'));
-            }
-            
-            # Usuario nao foi identificado
-            $this->Flash->error("Your username or password is incorrect");
+                return $this->redirect(['controller' => 'courses']);
+            } 
+            //Falha no login
+            $this->Flash->error('Erro ao realizar login. Por favor, tente novamente.');
         }
     }
 
+    //Função de Logout
     public function logout(){
-        $this->Flash->success('You are now logged out.');
+        $this->Flash->success('Você efeutou o logout com sucesso.');
         return $this->redirect($this->Auth->logout());
     }
 
+    //Função de Cadastro
     public function register(){
+        if (isset($this->request->data['access_level_id']) and $this->request->data['access_level_id'] != 2){
+            $this->Flash->error('Não foi possível concluir o cadastro. Por favor, tente novamente.');
+            return $this->redirect(['action' => 'register']);
+        }
         $user = $this->Users->newEntity();
         if($this->request->is('post')){
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)){
-                $this->Flash->success('You are registered and can log in!');
-                return $this->redirect(['action' => 'login']);         
+                $this->Flash->success('Cadastro realizado com sucesso. Você pode agora realizar o login.');
+                return $this->redirect(['action' => 'login']);
             } else {
-                $this->Flash->error('You are not registered');
+                $this->Flash->error('Não foi possível concluir o cadastro. Por favor, tente novamente.');
             }
         }
         $this->set(compact('user'));
@@ -149,4 +159,5 @@ class UsersController extends AppController
     public function beforeFilter(Event $event){
         $this->Auth->allow(['register']);
     }
+
 }

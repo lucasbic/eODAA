@@ -6,9 +6,13 @@ use Cake\ORM\Entity;
 /**
  * UsersCourse Entity
  *
- * @property int $id_users
- * @property int $id_courses
- * @property int $rel_type
+ * @property int $user_id
+ * @property int $course_id
+ * @property int $rel_type_id
+ *
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Course $course
+ * @property \App\Model\Entity\RelType $rel_type
  */
 class UsersCourse extends Entity
 {
@@ -23,6 +27,9 @@ class UsersCourse extends Entity
      * @var array
      */
     protected $_accessible = [
+        'rel_type_id' => true,
+        'user' => true,
+        'course' => true,
         'rel_type' => true
     ];
 }

@@ -9,6 +9,10 @@ use Cake\Validation\Validator;
 /**
  * UsersCourses Model
  *
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\CoursesTable|\Cake\ORM\Association\BelongsTo $Courses
+ * @property \App\Model\Table\RelTypesTable|\Cake\ORM\Association\BelongsTo $RelTypes
+ *
  * @method \App\Model\Entity\UsersCourse get($primaryKey, $options = [])
  * @method \App\Model\Entity\UsersCourse newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\UsersCourse[] newEntities(array $data, array $options = [])
@@ -32,31 +36,36 @@ class UsersCoursesTable extends Table
         parent::initialize($config);
 
         $this->setTable('users_courses');
-        $this->setDisplayField('id_users');
-        $this->setPrimaryKey(['id_users', 'id_courses']);
+        $this->setDisplayField('user_id');
+        $this->setPrimaryKey(['user_id', 'course_id']);
+
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Courses', [
+            'foreignKey' => 'course_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('RelTypes', [
+            'foreignKey' => 'rel_type_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
-     * Default validation rules.
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
      *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
      */
-    public function validationDefault(Validator $validator)
+    public function buildRules(RulesChecker $rules)
     {
-        $validator
-            ->integer('id_users')
-            ->allowEmpty('id_users', 'create');
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['course_id'], 'Courses'));
+        $rules->add($rules->existsIn(['rel_type_id'], 'RelTypes'));
 
-        $validator
-            ->integer('id_courses')
-            ->allowEmpty('id_courses', 'create');
-
-        $validator
-            ->integer('rel_type')
-            ->requirePresence('rel_type', 'create')
-            ->notEmpty('rel_type');
-
-        return $validator;
+        return $rules;
     }
 }

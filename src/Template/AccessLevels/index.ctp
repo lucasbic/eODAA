@@ -1,40 +1,38 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Lecture[]|\Cake\Collection\CollectionInterface $lectures
+ * @var \App\Model\Entity\AccessLevel[]|\Cake\Collection\CollectionInterface $accessLevels
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Lecture'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Courses'), ['controller' => 'Courses', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Course'), ['controller' => 'Courses', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Access Level'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="lectures index large-9 medium-8 columns content">
-    <h3><?= __('Lectures') ?></h3>
+<div class="accessLevels index large-9 medium-8 columns content">
+    <h3><?= __('Access Levels') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('course_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('description') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($lectures as $lecture): ?>
+            <?php foreach ($accessLevels as $accessLevel): ?>
             <tr>
-                <td><?= $this->Number->format($lecture->id) ?></td>
-                <td><?= h($lecture->name) ?></td>
-                <td><?= $lecture->has('course') ? $this->Html->link($lecture->course->name, ['controller' => 'Courses', 'action' => 'view', $lecture->course->id]) : '' ?></td>
-                <td><?= h($lecture->description) ?></td>
+                <td><?= $this->Number->format($accessLevel->id) ?></td>
+                <td><?= h($accessLevel->name) ?></td>
+                <td><?= h($accessLevel->description) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $lecture->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $lecture->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $lecture->id], ['confirm' => __('Are you sure you want to delete # {0}?', $lecture->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $accessLevel->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accessLevel->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $accessLevel->id], ['confirm' => __('Are you sure you want to delete # {0}?', $accessLevel->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

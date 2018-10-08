@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property int $course_id
+ * @property string $description
  *
  * @property \App\Model\Entity\Course $course
  */
@@ -27,6 +28,7 @@ class Lecture extends Entity
     protected $_accessible = [
         'name' => true,
         'course_id' => true,
+        'description' => true,
         'course' => true
     ];
 }

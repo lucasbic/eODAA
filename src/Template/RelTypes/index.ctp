@@ -1,40 +1,38 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Lecture[]|\Cake\Collection\CollectionInterface $lectures
+ * @var \App\Model\Entity\RelType[]|\Cake\Collection\CollectionInterface $relTypes
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Lecture'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Courses'), ['controller' => 'Courses', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Course'), ['controller' => 'Courses', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Rel Type'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users Courses'), ['controller' => 'UsersCourses', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Users Course'), ['controller' => 'UsersCourses', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="lectures index large-9 medium-8 columns content">
-    <h3><?= __('Lectures') ?></h3>
+<div class="relTypes index large-9 medium-8 columns content">
+    <h3><?= __('Rel Types') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('course_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('description') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($lectures as $lecture): ?>
+            <?php foreach ($relTypes as $relType): ?>
             <tr>
-                <td><?= $this->Number->format($lecture->id) ?></td>
-                <td><?= h($lecture->name) ?></td>
-                <td><?= $lecture->has('course') ? $this->Html->link($lecture->course->name, ['controller' => 'Courses', 'action' => 'view', $lecture->course->id]) : '' ?></td>
-                <td><?= h($lecture->description) ?></td>
+                <td><?= $this->Number->format($relType->id) ?></td>
+                <td><?= h($relType->name) ?></td>
+                <td><?= h($relType->description) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $lecture->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $lecture->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $lecture->id], ['confirm' => __('Are you sure you want to delete # {0}?', $lecture->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $relType->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $relType->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $relType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $relType->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

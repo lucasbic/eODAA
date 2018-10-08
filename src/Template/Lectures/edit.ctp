@@ -25,6 +25,7 @@
         <?php
             echo $this->Form->control('name');
             echo $this->Form->control('course_id', ['options' => $courses]);
+            echo $this->Form->control('description');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

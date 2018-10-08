@@ -8,6 +8,12 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Users Course'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Courses'), ['controller' => 'Courses', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Course'), ['controller' => 'Courses', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Rel Types'), ['controller' => 'RelTypes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Rel Type'), ['controller' => 'RelTypes', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="usersCourses index large-9 medium-8 columns content">
@@ -15,22 +21,22 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id_users') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('id_courses') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('rel_type') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('course_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('rel_type_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($usersCourses as $usersCourse): ?>
             <tr>
-                <td><?= $this->Number->format($usersCourse->id_users) ?></td>
-                <td><?= $this->Number->format($usersCourse->id_courses) ?></td>
-                <td><?= $this->Number->format($usersCourse->rel_type) ?></td>
+                <td><?= $usersCourse->has('user') ? $this->Html->link($usersCourse->user->name, ['controller' => 'Users', 'action' => 'view', $usersCourse->user->id]) : '' ?></td>
+                <td><?= $usersCourse->has('course') ? $this->Html->link($usersCourse->course->name, ['controller' => 'Courses', 'action' => 'view', $usersCourse->course->id]) : '' ?></td>
+                <td><?= $usersCourse->has('rel_type') ? $this->Html->link($usersCourse->rel_type->name, ['controller' => 'RelTypes', 'action' => 'view', $usersCourse->rel_type->id]) : '' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $usersCourse->id_users]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $usersCourse->id_users]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $usersCourse->id_users], ['confirm' => __('Are you sure you want to delete # {0}?', $usersCourse->id_users)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $usersCourse->user_id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $usersCourse->user_id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $usersCourse->user_id], ['confirm' => __('Are you sure you want to delete # {0}?', $usersCourse->user_id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

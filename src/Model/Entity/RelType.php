@@ -4,15 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Class Entity
+ * RelType Entity
  *
  * @property int $id
  * @property string $name
- * @property int $course_id
+ * @property string $description
  *
- * @property \App\Model\Entity\Course $course
+ * @property \App\Model\Entity\UsersCourse[] $users_courses
  */
-class Class extends Entity
+class RelType extends Entity
 {
 
     /**
@@ -26,7 +26,7 @@ class Class extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'course_id' => true,
-        'course' => true
+        'description' => true,
+        'users_courses' => true
     ];
 }

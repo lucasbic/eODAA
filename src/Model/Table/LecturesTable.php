@@ -61,6 +61,12 @@ class LecturesTable extends Table
             ->requirePresence('name', 'create')
             ->notEmpty('name');
 
+        $validator
+            ->scalar('description')
+            ->maxLength('description', 1024)
+            ->requirePresence('description', 'create')
+            ->notEmpty('description');
+
         return $validator;
     }
 

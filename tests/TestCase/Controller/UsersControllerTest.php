@@ -18,7 +18,10 @@ class UsersControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.users',
         'app.addresses',
+        'app.access_levels',
+        'app.courses',
         'app.educational_institutions',
+        'app.users_courses',
         'app.users_educational_institutions'
     ];
 

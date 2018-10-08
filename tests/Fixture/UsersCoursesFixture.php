@@ -17,16 +17,18 @@ class UsersCoursesFixture extends TestFixture
      */
     // @codingStandardsIgnoreStart
     public $fields = [
-        'id_users' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'id_courses' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'rel_type' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'course_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'rel_type_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
-            'id_courses' => ['type' => 'index', 'columns' => ['id_courses'], 'length' => []],
+            'id_courses' => ['type' => 'index', 'columns' => ['course_id'], 'length' => []],
+            'rel_type' => ['type' => 'index', 'columns' => ['rel_type_id'], 'length' => []],
         ],
         '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id_users', 'id_courses'], 'length' => []],
-            'users_courses_ibfk_1' => ['type' => 'foreign', 'columns' => ['id_courses'], 'references' => ['courses', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'users_courses_ibfk_2' => ['type' => 'foreign', 'columns' => ['id_users'], 'references' => ['users', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'primary' => ['type' => 'primary', 'columns' => ['user_id', 'course_id'], 'length' => []],
+            'users_courses_ibfk_1' => ['type' => 'foreign', 'columns' => ['course_id'], 'references' => ['courses', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'users_courses_ibfk_2' => ['type' => 'foreign', 'columns' => ['user_id'], 'references' => ['users', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'users_courses_ibfk_3' => ['type' => 'foreign', 'columns' => ['rel_type_id'], 'references' => ['rel_types', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -44,9 +46,9 @@ class UsersCoursesFixture extends TestFixture
     {
         $this->records = [
             [
-                'id_users' => 1,
-                'id_courses' => 1,
-                'rel_type' => 1
+                'user_id' => 1,
+                'course_id' => 1,
+                'rel_type_id' => 1
             ],
         ];
         parent::init();

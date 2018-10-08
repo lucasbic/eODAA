@@ -25,9 +25,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <?= $this->Html->css('base.css?v='.time()) ?>
+    <?= $this->Html->css('style.css?v='.time()) ?>
+    <?= $this->Html->css('eodaa.css?v='.time()) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -35,18 +38,22 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
+        <ul class="title-area large-2 medium-4 columns">
             <li class="name">
                 <h1><a href=""><?= $this->fetch('title') ?></a></h1>
             </li>
         </ul>
         <div class="top-bar-section">
+            <?php if($loggedIn){?>
+            <span class="headerText"> Bem vindo, <a class="headerText" href="/eODAA/users/view/<?=$logged_user['id']?>"><?=$logged_user['name']?></a> </span>
+            <?php } ?>
             <ul class="right">
-                <?php if($loggedIn) : ?>
-                    <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']) ?></li>
-                <?php else : ?>
-                    <li><?= $this->Html->link('Register', ['controller' => 'users', 'action' => 'register']) ?></li>
-                <?php endif; ?>
+                <?php if($loggedIn) {?>
+                <li> <a href="/eODAA/users/view/<?=$user_id?>">Meu Perfil </a></li>
+                <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']);?></li>
+                <?php } else {?>
+                <li><?= $this->Html->link('Cadastro', ['controller' => 'users', 'action' => 'register']);?></li>
+                <?php } ?>
             </ul>
         </div>
     </nav>

@@ -4,15 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * UsersEducationalInstitution Entity
+ * AccessLevel Entity
  *
- * @property int $user_id
- * @property int $educational_institution_id
+ * @property int $id
+ * @property string $name
+ * @property string $description
  *
- * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\EducationalInstitution $educational_institution
+ * @property \App\Model\Entity\User[] $users
  */
-class UsersEducationalInstitution extends Entity
+class AccessLevel extends Entity
 {
 
     /**
@@ -25,7 +25,8 @@ class UsersEducationalInstitution extends Entity
      * @var array
      */
     protected $_accessible = [
-        'user' => true,
-        'educational_institution' => true
+        'name' => true,
+        'description' => true,
+        'users' => true
     ];
 }
