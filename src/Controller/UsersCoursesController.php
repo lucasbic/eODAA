@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * UsersCourses Controller
@@ -20,6 +21,9 @@ class UsersCoursesController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Users', 'Courses', 'RelTypes']
+        ];
         $usersCourses = $this->paginate($this->UsersCourses);
 
         $this->set(compact('usersCourses'));
@@ -35,7 +39,7 @@ class UsersCoursesController extends AppController
     public function view($id = null)
     {
         $usersCourse = $this->UsersCourses->get($id, [
-            'contain' => []
+            'contain' => ['Users', 'Courses', 'RelTypes']
         ]);
 
         $this->set('usersCourse', $usersCourse);
@@ -58,7 +62,10 @@ class UsersCoursesController extends AppController
             }
             $this->Flash->error(__('The users course could not be saved. Please, try again.'));
         }
-        $this->set(compact('usersCourse'));
+        $users = $this->UsersCourses->Users->find('list', ['limit' => 200]);
+        $courses = $this->UsersCourses->Courses->find('list', ['limit' => 200]);
+        $relTypes = $this->UsersCourses->RelTypes->find('list', ['limit' => 200]);
+        $this->set(compact('usersCourse', 'users', 'courses', 'relTypes'));
     }
 
     /**
@@ -82,7 +89,10 @@ class UsersCoursesController extends AppController
             }
             $this->Flash->error(__('The users course could not be saved. Please, try again.'));
         }
-        $this->set(compact('usersCourse'));
+        $users = $this->UsersCourses->Users->find('list', ['limit' => 200]);
+        $courses = $this->UsersCourses->Courses->find('list', ['limit' => 200]);
+        $relTypes = $this->UsersCourses->RelTypes->find('list', ['limit' => 200]);
+        $this->set(compact('usersCourse', 'users', 'courses', 'relTypes'));
     }
 
     /**
@@ -103,5 +113,21 @@ class UsersCoursesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function contratar($user_id, $course_id){
+        $connection = ConnectionManager::get('default');
+        if($connection->insert('users_courses', ['user_id' => $user_id,'course_id' => $course_id,'rel_type_id' => 2])){
+            $this->Flash->success(__('Curso contratado com sucesso.'));
+            return $this->redirect(['controller' => 'Courses', 'action' => 'index']);
+        } else {
+            $this->Flash->error(__('O curso não pode ser contratado no momento. Por favor tente novamente.'));
+            return $this->redirect(['controller' => 'Courses', 'action' => 'view'], $course_id);
+        }
+    }
+
+    public function criar($user_id, $course_name){
+        $connection = ConnectionManager::get('default');
+        $course_id = $connection->execute('SELECT id FROM courses WHERE name = :name', ['name' => $course_name]);
     }
 }

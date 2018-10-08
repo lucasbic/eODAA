@@ -4,22 +4,17 @@
  * @var \App\Model\Entity\Course $course
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
+<nav class="large-2 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Course'), ['action' => 'edit', $course->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Course'), ['action' => 'delete', $course->id], ['confirm' => __('Are you sure you want to delete # {0}?', $course->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Courses'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Course'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Knowledge Areas'), ['controller' => 'KnowledgeAreas', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Knowledge Area'), ['controller' => 'KnowledgeAreas', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Educational Institutions'), ['controller' => 'EducationalInstitutions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Educational Institution'), ['controller' => 'EducationalInstitutions', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Lectures'), ['controller' => 'Lectures', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Lecture'), ['controller' => 'Lectures', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Contratar Curso'), ['controller' => 'UsersCourses', 'action' => 'contratar', $user_id, $course->id]) ?> </li>
     </ul>
 </nav>
-<div class="courses view large-9 medium-8 columns content">
+<div class="courses view large-10 medium-8 columns content">
     <h3><?= h($course->name) ?></h3>
     <table class="vertical-table">
         <tr>
@@ -44,6 +39,47 @@
         </tr>
     </table>
     <div class="related">
+        <h4><?= __('Related Users') ?></h4>
+        <?php if (!empty($course->users)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Name') ?></th>
+                <th scope="col"><?= __('Email') ?></th>
+                <th scope="col"><?= __('Password') ?></th>
+                <th scope="col"><?= __('Cpf') ?></th>
+                <th scope="col"><?= __('Phone Number') ?></th>
+                <th scope="col"><?= __('Scholarity') ?></th>
+                <th scope="col"><?= __('Address Id') ?></th>
+                <th scope="col"><?= __('Created') ?></th>
+                <th scope="col"><?= __('Modified') ?></th>
+                <th scope="col"><?= __('Access Level Id') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($course->users as $users): ?>
+            <tr>
+                <td><?= h($users->id) ?></td>
+                <td><?= h($users->name) ?></td>
+                <td><?= h($users->email) ?></td>
+                <td><?= h($users->password) ?></td>
+                <td><?= h($users->cpf) ?></td>
+                <td><?= h($users->phone_number) ?></td>
+                <td><?= h($users->scholarity) ?></td>
+                <td><?= h($users->address_id) ?></td>
+                <td><?= h($users->created) ?></td>
+                <td><?= h($users->modified) ?></td>
+                <td><?= h($users->access_level_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $users->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $users->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Users', 'action' => 'delete', $users->id], ['confirm' => __('Are you sure you want to delete # {0}?', $users->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
         <h4><?= __('Related Lectures') ?></h4>
         <?php if (!empty($course->lectures)): ?>
         <table cellpadding="0" cellspacing="0">
@@ -51,6 +87,7 @@
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
                 <th scope="col"><?= __('Course Id') ?></th>
+                <th scope="col"><?= __('Description') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($course->lectures as $lectures): ?>
@@ -58,6 +95,7 @@
                 <td><?= h($lectures->id) ?></td>
                 <td><?= h($lectures->name) ?></td>
                 <td><?= h($lectures->course_id) ?></td>
+                <td><?= h($lectures->description) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Lectures', 'action' => 'view', $lectures->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Lectures', 'action' => 'edit', $lectures->id]) ?>

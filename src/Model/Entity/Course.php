@@ -15,6 +15,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\KnowledgeArea $knowledge_area
  * @property \App\Model\Entity\EducationalInstitution $educational_institution
  * @property \App\Model\Entity\Lecture[] $lectures
+ * @property \App\Model\Entity\User[] $users
  */
 class Course extends Entity
 {
@@ -35,6 +36,7 @@ class Course extends Entity
         'description' => true,
         'knowledge_area' => true,
         'educational_institution' => true,
-        'lectures' => true
+        'lectures' => true,
+        'users' => true
     ];
 }

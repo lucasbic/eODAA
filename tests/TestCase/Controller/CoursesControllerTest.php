@@ -19,7 +19,9 @@ class CoursesControllerTest extends IntegrationTestCase
         'app.courses',
         'app.knowledge_areas',
         'app.educational_institutions',
-        'app.lectures'
+        'app.lectures',
+        'app.users',
+        'app.users_courses'
     ];
 
     /**

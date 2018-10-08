@@ -20,6 +20,8 @@
         <li><?= $this->Html->link(__('New Educational Institution'), ['controller' => 'EducationalInstitutions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Lectures'), ['controller' => 'Lectures', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Lecture'), ['controller' => 'Lectures', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="courses form large-9 medium-8 columns content">
@@ -31,6 +33,7 @@
             echo $this->Form->control('knowledge_area_id', ['options' => $knowledgeAreas]);
             echo $this->Form->control('educational_institution_id', ['options' => $educationalInstitutions]);
             echo $this->Form->control('description');
+            echo $this->Form->control('users._ids', ['options' => $users]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

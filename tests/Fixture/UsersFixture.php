@@ -27,12 +27,15 @@ class UsersFixture extends TestFixture
         'address_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+        'access_level_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         '_indexes' => [
             'address_key' => ['type' => 'index', 'columns' => ['address_id'], 'length' => []],
+            'level' => ['type' => 'index', 'columns' => ['access_level_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
             'address_key' => ['type' => 'foreign', 'columns' => ['address_id'], 'references' => ['addresses', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'users_ibfk_1' => ['type' => 'foreign', 'columns' => ['access_level_id'], 'references' => ['access_levels', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -58,8 +61,9 @@ class UsersFixture extends TestFixture
                 'phone_number' => 'Lorem ipsum dolor sit amet',
                 'scholarity' => 'Lorem ipsum dolor sit amet',
                 'address_id' => 1,
-                'created' => '2018-09-17 03:30:52',
-                'modified' => '2018-09-17 03:30:52'
+                'created' => '2018-09-25 23:17:18',
+                'modified' => '2018-09-25 23:17:18',
+                'access_level_id' => 1
             ],
         ];
         parent::init();

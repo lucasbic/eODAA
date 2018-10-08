@@ -10,7 +10,8 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \App\Model\Table\AddressesTable|\Cake\ORM\Association\BelongsTo $Addresses
- * @property |\Cake\ORM\Association\BelongsToMany $Courses
+ * @property \App\Model\Table\AccessLevelsTable|\Cake\ORM\Association\BelongsTo $AccessLevels
+ * @property \App\Model\Table\CoursesTable|\Cake\ORM\Association\BelongsToMany $Courses
  * @property \App\Model\Table\EducationalInstitutionsTable|\Cake\ORM\Association\BelongsToMany $EducationalInstitutions
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -46,6 +47,10 @@ class UsersTable extends Table
         $this->belongsTo('Addresses', [
             'foreignKey' => 'address_id'
         ]);
+        $this->belongsTo('AccessLevels', [
+            'foreignKey' => 'access_level_id',
+            'joinType' => 'INNER'
+        ]);
         $this->belongsToMany('Courses', [
             'foreignKey' => 'user_id',
             'targetForeignKey' => 'course_id',
@@ -56,6 +61,8 @@ class UsersTable extends Table
             'targetForeignKey' => 'educational_institution_id',
             'joinTable' => 'users_educational_institutions'
         ]);
+
+        $knowledge_area = $this->find()->contain(['Courses.Knowledge_Area']);
     }
 
     /**
@@ -119,6 +126,7 @@ class UsersTable extends Table
     {
         $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['address_id'], 'Addresses'));
+        $rules->add($rules->existsIn(['access_level_id'], 'AccessLevels'));
 
         return $rules;
     }

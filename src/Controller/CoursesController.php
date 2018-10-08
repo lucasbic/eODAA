@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Courses Controller
@@ -38,7 +39,7 @@ class CoursesController extends AppController
     public function view($id = null)
     {
         $course = $this->Courses->get($id, [
-            'contain' => ['KnowledgeAreas', 'EducationalInstitutions', 'Lectures']
+            'contain' => ['KnowledgeAreas', 'EducationalInstitutions', 'Users', 'Lectures']
         ]);
 
         $this->set('course', $course);
@@ -55,15 +56,15 @@ class CoursesController extends AppController
         if ($this->request->is('post')) {
             $course = $this->Courses->patchEntity($course, $this->request->getData());
             if ($this->Courses->save($course)) {
-                $this->Flash->success(__('The course has been saved.'));
-
+                #return $this->redirect(['controller' => 'UsersCourses', 'action' => 'criar'], $user_id, $course_name);
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The course could not be saved. Please, try again.'));
         }
         $knowledgeAreas = $this->Courses->KnowledgeAreas->find('list', ['limit' => 200]);
         $educationalInstitutions = $this->Courses->EducationalInstitutions->find('list', ['limit' => 200]);
-        $this->set(compact('course', 'knowledgeAreas', 'educationalInstitutions'));
+        $users = $this->Courses->Users->find('list', ['limit' => 200]);
+        $this->set(compact('course', 'knowledgeAreas', 'educationalInstitutions', 'users'));
     }
 
     /**
@@ -76,7 +77,7 @@ class CoursesController extends AppController
     public function edit($id = null)
     {
         $course = $this->Courses->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $course = $this->Courses->patchEntity($course, $this->request->getData());
@@ -89,7 +90,8 @@ class CoursesController extends AppController
         }
         $knowledgeAreas = $this->Courses->KnowledgeAreas->find('list', ['limit' => 200]);
         $educationalInstitutions = $this->Courses->EducationalInstitutions->find('list', ['limit' => 200]);
-        $this->set(compact('course', 'knowledgeAreas', 'educationalInstitutions'));
+        $users = $this->Courses->Users->find('list', ['limit' => 200]);
+        $this->set(compact('course', 'knowledgeAreas', 'educationalInstitutions', 'users'));
     }
 
     /**
@@ -112,17 +114,24 @@ class CoursesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function educationalinstitutions(){
-        # pegando parametros passados na url
-        $educationalinstitutions = $this->request->params['pass'];
+    public function anuncio(){
+        $this->Flash->success('Crie um novo anúncio.');
+        $this->set('cadastrandoAnuncio', true);
 
-        # encontrar cursos relacionados aquela universidade
-        $courses = $this->Courses->find('institution', ['educationalinstitutions' => $educationalinstitutions]);
+        if ($this->request->is('post')){
+            if ($cancelar){
+                //return $this->redirect($this->Auth->redirectUrl());
+                $this->Flash->success("Cancelado");
+                return $this->redirect(['controller' => 'Users']);
+            }
+            else{
+                # Usuario nao foi identificado
+                $this->Flash->error("Seu login ou senha estão incorretos.");
+            }
+        }
+    }
 
-        # manda para view
-        $this->set([
-            'courses' => $courses,
-            'educationalinstitutions' => $educationalinstitutions
-        ]);
+    public function cancelar(){
+        $this->set('cancelar', false);
     }
 }

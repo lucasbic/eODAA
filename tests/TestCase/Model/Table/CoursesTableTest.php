@@ -27,7 +27,8 @@ class CoursesTableTest extends TestCase
         'app.courses',
         'app.knowledge_areas',
         'app.educational_institutions',
-        'app.lectures'
+        'app.lectures',
+        'app.users'
     ];
 
     /**
@@ -80,16 +81,6 @@ class CoursesTableTest extends TestCase
      * @return void
      */
     public function testBuildRules()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test findInstitution method
-     *
-     * @return void
-     */
-    public function testFindInstitution()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

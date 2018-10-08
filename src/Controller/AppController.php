@@ -16,6 +16,8 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Datasource\ConnectionManager;
+
 
 /**
  * Application Controller
@@ -39,6 +41,11 @@ class AppController extends Controller
      */
     public function initialize()
     {
+        parent::initialize();
+
+        $this->loadComponent('RequestHandler', [
+            'enableBeforeRedirect' => false,
+        ]);
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
             'authenticate' => [
@@ -48,19 +55,41 @@ class AppController extends Controller
                         'password' => 'password'
                     ]
                 ]
-            ], 
+            ],  
             'loginAction' => [
                 'controller' => 'Users',
                 'action' => 'login'
             ]
-       ]);
-
+        ]);
+        
+        /*
+         * Enable the following component for recommended CakePHP security settings.
+         * see https://book.cakephp.org/3.0/en/controllers/components/security.html
+         */
+        //$this->loadComponent('Security');
     }
 
     public function beforeRender(Event $event){
-        #Login check
-        if($this->request->session()->read('Auth.User')){
+        // Checando se usuário está logado
+        if ($this->request->session()->read('Auth.User')){
             $this->set('loggedIn', true);
-        } else $this->set('loggedIn', false);
+        } else {
+            $this->set('loggedIn', false);
+        }
+        #logged user info
+        $logged_user = $this->Auth->user();
+        $this->set('logged_user', $logged_user);
+        $this->logged_user = $logged_user;
+
+        #logged user id
+        $user_id = $this->Auth->user('id');
+        $this->set('user_id', $user_id);
+        $this->user_id = $user_id;
+
+        #default db connection_aborted()
+        $connection = ConnectionManager::get('default');
+        $this->set('connection', $connection);
+        $this->connection = $connection;
     }
+
 }

@@ -24,7 +24,10 @@ class UsersCoursesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.users_courses'
+        'app.users_courses',
+        'app.users',
+        'app.courses',
+        'app.rel_types'
     ];
 
     /**
@@ -62,11 +65,11 @@ class UsersCoursesTableTest extends TestCase
     }
 
     /**
-     * Test validationDefault method
+     * Test buildRules method
      *
      * @return void
      */
-    public function testValidationDefault()
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

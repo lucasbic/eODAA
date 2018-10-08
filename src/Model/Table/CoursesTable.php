@@ -12,7 +12,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\KnowledgeAreasTable|\Cake\ORM\Association\BelongsTo $KnowledgeAreas
  * @property \App\Model\Table\EducationalInstitutionsTable|\Cake\ORM\Association\BelongsTo $EducationalInstitutions
  * @property \App\Model\Table\LecturesTable|\Cake\ORM\Association\HasMany $Lectures
- * @property |\Cake\ORM\Association\BelongsToMany $Users
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsToMany $Users
  *
  * @method \App\Model\Entity\Course get($primaryKey, $options = [])
  * @method \App\Model\Entity\Course newEntity($data = null, array $options = [])
@@ -41,6 +41,7 @@ class CoursesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('KnowledgeAreas', [
+            'className' => 'KnowledgeAreas',
             'foreignKey' => 'knowledge_area_id',
             'joinType' => 'INNER'
         ]);
@@ -99,4 +100,5 @@ class CoursesTable extends Table
 
         return $rules;
     }
+
 }
