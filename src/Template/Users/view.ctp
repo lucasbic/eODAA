@@ -58,7 +58,7 @@ date_default_timezone_set('America/Sao_Paulo');
                                     <h4 style="color:#00b1b1;margin-bottom:0px"><?= h($user->name); ?></h4>
                                 </div>
                                 <div class="col-sm-2">
-                                    <h4><a href="/eodaa2/users/edit/<?=$user->id?>">Editar Perfil</a></h4>
+                                    <h4><a href="/eODAA/users/edit/<?=$user->id?>">Editar Perfil</a></h4>
                                 </div>
 
                                 <div class="clearfix"></div>

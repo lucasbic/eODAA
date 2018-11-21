@@ -6,16 +6,9 @@
 ?>
 <nav class="large-2 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Course'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Knowledge Areas'), ['controller' => 'KnowledgeAreas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Knowledge Area'), ['controller' => 'KnowledgeAreas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Educational Institutions'), ['controller' => 'EducationalInstitutions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Educational Institution'), ['controller' => 'EducationalInstitutions', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Lectures'), ['controller' => 'Lectures', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Lecture'), ['controller' => 'Lectures', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li class="heading"><?= __('Menu') ?></li>
+        <li><?= $this->Html->link(__('+ Criar Curso'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Cursos Salvos'), ['controller' => 'users' , 'action' => 'favorites', $user_id])?></li>    
     </ul>
 </nav>
 <div class="courses index large-10 medium-8 columns content">
@@ -23,26 +16,23 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('knowledge_area_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('educational_institution_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('description') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('name', 'Curso') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('knowledge_area_id', 'Area de Conhecimento') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('educational_institution_id', 'Instituição Educacional') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('description', 'Descrição') ?></th>
+                <th scope="col" class="actions"><?= __('Ações') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($courses as $course): ?>
             <tr>
-                <td><?= $this->Number->format($course->id) ?></td>
                 <td><?= h($course->name) ?></td>
                 <td><?= $course->has('knowledge_area') ? $this->Html->link($course->knowledge_area->name, ['controller' => 'KnowledgeAreas', 'action' => 'view', $course->knowledge_area->id]) : '' ?></td>
                 <td><?= $course->has('educational_institution') ? $this->Html->link($course->educational_institution->name, ['controller' => 'EducationalInstitutions', 'action' => 'view', $course->educational_institution->id]) : '' ?></td>
                 <td><?= h($course->description) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $course->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $course->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $course->id], ['confirm' => __('Are you sure you want to delete # {0}?', $course->id)]) ?>
+                    <?= $this->Html->link(__('Ver'), ['action' => 'view', $course->id]) ?>
+                    <?= $this->Form->postLink(__('Contratar'), ['controller' => 'UsersCourses', 'action' => 'contratar', $user_id, $course->id], ['confirm' => __('Você tem certeza de que deseja contratar o curso de {0}?', $course->name)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
