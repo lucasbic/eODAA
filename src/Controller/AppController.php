@@ -71,7 +71,7 @@ class AppController extends Controller
 
     public function beforeRender(Event $event){
         // Checando se usuário está logado
-        if ($this->request->session()->read('Auth.User')){
+        if ($this->request->getSession()->read('Auth.User')){
             $this->set('loggedIn', true);
         } else {
             $this->set('loggedIn', false);

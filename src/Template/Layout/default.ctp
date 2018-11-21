@@ -13,7 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$title = 'eODAA';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,8 +21,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        <?= $title ?>
     </title>
     <?= $this->Html->meta('icon') ?>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -40,16 +39,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-2 medium-4 columns">
             <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+                <h1><a href=""><?= $title ?></a></h1>
             </li>
         </ul>
         <div class="top-bar-section">
             <?php if($loggedIn){?>
-            <span class="headerText"> Bem vindo, <a class="headerText" href="/eODAA/users/view/<?=$logged_user['id']?>"><?=$logged_user['name']?></a> </span>
+            <span class="headerText"> Bem vindo, <?= $this->Html->link($logged_user['name'], ['controller' => 'users', 'action' => 'view', $user_id], ['class' => 'headerText']);?></span>
             <?php } ?>
             <ul class="right">
                 <?php if($loggedIn) {?>
-                <li> <a href="/eODAA/users/view/<?=$user_id?>">Meu Perfil </a></li>
+                <li> <?= $this->Html->link('Meu Perfil', ['controller' => 'users', 'action' => 'view', $user_id]); ?>
+                <li><?= $this->Html->link('Favoritos', ['controller' => 'users', 'action' => 'favorites', $user_id]);?></li>
                 <li><?= $this->Html->link('Logout', ['controller' => 'users', 'action' => 'logout']);?></li>
                 <?php } else {?>
                 <li><?= $this->Html->link('Cadastro', ['controller' => 'users', 'action' => 'register']);?></li>

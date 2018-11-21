@@ -45,6 +45,14 @@ class UsersController extends AppController
         $this->set('user', $user);
     }
 
+    public function favorites($id = null){
+        $user = $this->Users->get($id, [
+            'contain' => ['Addresses', 'AccessLevels', 'Courses', 'EducationalInstitutions', 'Courses.KnowledgeAreas', 'Courses.EducationalInstitutions']
+        ]);
+
+        $this->set('user', $user);
+    }
+
     /**
      * Add method
      *
@@ -155,6 +163,7 @@ class UsersController extends AppController
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
     }
+
 
     public function beforeFilter(Event $event){
         $this->Auth->allow(['register']);
