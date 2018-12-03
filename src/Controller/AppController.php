@@ -35,7 +35,7 @@ class AppController extends Controller
         \Cake\Event\EventManager::instance()->on('HybridAuth.newUser', [$this, 'createUser']);
     }*/
     
-    public function createUser(\Cake\Event\Event $event) {
+    /*public function createUser(\Cake\Event\Event $event) {
         // Entity representing record in social_profiles table
         $profile = $event->data()['profile'];
  
@@ -50,7 +50,7 @@ class AppController extends Controller
         }
  
         return $user;
-    }
+    }*/
     
     /**
      * Initialization hook method.
