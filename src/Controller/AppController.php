@@ -29,7 +29,29 @@ use Cake\Datasource\ConnectionManager;
  */
 class AppController extends Controller
 {
-
+    
+    public function beforeFilter(Event $event)
+    {
+        \Cake\Event\EventManager::instance()->on('HybridAuth.newUser', [$this, 'createUser']);
+    }
+    
+    public function createUser(\Cake\Event\Event $event) {
+        // Entity representing record in social_profiles table
+        $profile = $event->data()['profile'];
+ 
+        $user = $this->newEntity([
+            'email' => $profile->email,
+            'password' => time()
+        ]);
+        $user = $this->save($user);
+ 
+        if (!$user) {
+            throw new \RuntimeException('Unable to save new user');
+        }
+ 
+        return $user;
+    }
+    
     /**
      * Initialization hook method.
      *
