@@ -38,7 +38,7 @@ class Application extends BaseApplication
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
-        $this->addPlugin('ADmad/HybridAuth');
+        //$this->addPlugin('ADmad/HybridAuth');
         
         if (PHP_SAPI === 'cli') {
             try {
