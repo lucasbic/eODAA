@@ -37,7 +37,7 @@
                 <td><?= h($course->description) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Ver'), ['action' => 'view', $course->id]) ?>
-                    <?= $this->Form->postLink(__('Contratar'), ['controller' => 'UsersCourses', 'action' => 'contratar', $user_id, $course->id], ['confirm' => __('Você tem certeza de que deseja contratar o curso de {0}?', $course->name)]) ?>
+                    <?= $this->Form->postLink(__('Contratar'), ['controller' => 'UsersCourses', 'action' => 'contratar', 0, $user_id, $course->id], ['confirm' => __('Você tem certeza de que deseja contratar o curso de {0}?', $course->name)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
