@@ -46,6 +46,7 @@ class Application extends BaseApplication
             }
 
             $this->addPlugin('Migrations');
+            $this->addPlugin('ADmad/HybridAuth');
         }
 
     }
