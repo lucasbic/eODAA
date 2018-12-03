@@ -134,4 +134,57 @@ class CoursesController extends AppController
     public function cancelar(){
         $this->set('cancelar', false);
     }
+
+public function schedulealuno(){
+        /*
+        $this->Flash->success('Crie um novo anúncio.');
+        $this->set('cadastrandoAnuncio', true);
+
+        if ($this->request->is('post')){
+            if ($cancelar){
+                //return $this->redirect($this->Auth->redirectUrl());
+                $this->Flash->success("Cancelado");
+                return $this->redirect(['controller' => 'Users']);
+            }
+            else{
+                # Usuario nao foi identificado
+                $this->Flash->error("Seu login ou senha estão incorretos.");
+            }
+        }
+        */
+    }
+
+    public function scheduleprofessor(){
+        /*
+        $this->Flash->success('Crie um novo anúncio.');
+        $this->set('cadastrandoAnuncio', true);
+
+        if ($this->request->is('post')){
+            if ($cancelar){
+                //return $this->redirect($this->Auth->redirectUrl());
+                $this->Flash->success("Cancelado");
+                return $this->redirect(['controller' => 'Users']);
+            }
+            else{
+                # Usuario nao foi identificado
+                $this->Flash->error("Seu login ou senha estão incorretos.");
+            }
+        }
+        */
+    }
+
+    public function materialdidatico(){      
+        $knowledgeAreas = $this->Courses->KnowledgeAreas->find('list', ['limit' => 200]);
+        $educationalInstitutions = $this->Courses->EducationalInstitutions->find('list', ['limit' => 200]);
+        $users = $this->Courses->Users->find('list', ['limit' => 200]);
+        $this->set(compact('course', 'knowledgeAreas', 'educationalInstitutions', 'users'));
+
+    }
+
+    public function classificacaoservico(){
+        $knowledgeAreas = $this->Courses->KnowledgeAreas->find('list', ['limit' => 200]);
+        $educationalInstitutions = $this->Courses->EducationalInstitutions->find('list', ['limit' => 200]);
+        $users = $this->Courses->Users->find('list', ['limit' => 200]);
+        $this->set(compact('course', 'knowledgeAreas', 'educationalInstitutions', 'users'));
+    }
 }

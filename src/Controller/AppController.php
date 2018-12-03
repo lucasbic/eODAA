@@ -70,6 +70,7 @@ class AppController extends Controller
     }
 
     public function beforeRender(Event $event){
+        $this->loadComponent('Auth');
         // Checando se usuário está logado
         if ($this->request->getSession()->read('Auth.User')){
             $this->set('loggedIn', true);
@@ -85,6 +86,8 @@ class AppController extends Controller
         $user_id = $this->Auth->user('id');
         $this->set('user_id', $user_id);
         $this->user_id = $user_id;
+
+
 
         #default db connection_aborted()
         $connection = ConnectionManager::get('default');

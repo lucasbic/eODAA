@@ -1,4 +1,16 @@
 /* FONTES */
+.desativar{
+	font-size:12px;
+	text-align: right;
+	margin-bottom:0;
+}
+
+.bottom{
+	position:absolute;
+	left:10px;
+	bottom:2px;
+}
+
 p.small{
 	font-size:12px;
 	margin:0;
@@ -75,13 +87,13 @@ fieldset legend {
 		display: inline-block;
 		width: 100%;
 		color: rgb(255, 255, 255);
-		background-color: rgb(197, 44, 102);
+		background-color: #01545b;
 		padding: 5px;
 		text-align: center;
 		text-transform: uppercase;
 	}
 	.event-list > li:nth-child(even) > span {
-		background-color: rgb(165, 82, 167);
+		background-color: #1a9ba8;
 	}
 	.event-list > li > span > .infobox {
 		color: rgb(255, 255, 255);
