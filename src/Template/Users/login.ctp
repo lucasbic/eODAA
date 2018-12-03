@@ -5,6 +5,10 @@
 		<?= $this->Form->create(); ?>
 			<?= $this->Form->input('email', array('label' => 'E-mail')); ?>
 			<?= $this->Form->input('password', array('type' => 'password', 'label' => 'Senha')); ?>
+            <?= $this->Html->link(
+                                 'Login with Facebook',
+                                 ['controller' => 'Users', 'action' => 'login', '?' => ['provider' => 'Facebook']]
+                                );
 			<div class="center">
 				<?= $this->Form->submit('Login', array('class' => 'button')); ?>
 				<?= $this->Html->Link('Não possuo cadastro', ['action' => 'register'], ['class' => 'small']);?>
