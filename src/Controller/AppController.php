@@ -30,10 +30,10 @@ use Cake\Datasource\ConnectionManager;
 class AppController extends Controller
 {
     
-    public function beforeFilter(Event $event)
+    /*public function beforeFilter(Event $event)
     {
         \Cake\Event\EventManager::instance()->on('HybridAuth.newUser', [$this, 'createUser']);
-    }
+    }*/
     
     public function createUser(\Cake\Event\Event $event) {
         // Entity representing record in social_profiles table
@@ -76,7 +76,7 @@ class AppController extends Controller
                         'username' => 'email',
                         'password' => 'password'
                     ]
-                ],
+                ]/*,
                 'ADmad/HybridAuth.HybridAuth' => [
                     // All keys shown below are defaults
                     'fields' => [
@@ -93,7 +93,7 @@ class AppController extends Controller
                         'prefix' => false,
                         'plugin' => false
                     ]
-                ]
+                ]*/
             ],  
             'loginAction' => [
                 'controller' => 'Users',
