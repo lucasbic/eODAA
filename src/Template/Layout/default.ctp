@@ -13,9 +13,9 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 #debug($logged_user);
-if ($logged_user['status'] == 0){
-   header("Location: ".$this->Html->link(['controller' => 'pages', 'action' => 'home']));
-}
+//if ($logged_user['status'] == 0){
+//   header("Location: ".$this->Html->link(['controller' => 'pages', 'action' => 'home']));
+//}
 $title = 'eODAA';
 ?>
 <!DOCTYPE html>
