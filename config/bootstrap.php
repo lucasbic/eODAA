@@ -198,4 +198,4 @@ Type::build('timestamp')
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 
-Plugin::load('ADmad/HybridAuth', ['bootstrap' => true, 'routes' => true]);
+//Plugin::load('ADmad/HybridAuth', ['bootstrap' => true, 'routes' => true]);
