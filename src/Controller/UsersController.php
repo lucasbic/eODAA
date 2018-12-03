@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Users Controller
@@ -25,7 +26,7 @@ class UsersController extends AppController
             'contain' => ['Addresses', 'AccessLevels', 'Courses']
         ];
         $users = $this->paginate($this->Users);
-
+        
         $this->set(compact('users'));
     }
 
@@ -167,6 +168,16 @@ class UsersController extends AppController
 
     public function beforeFilter(Event $event){
         $this->Auth->allow(['register']);
+    }
+
+    public function disable($id){
+        $connection = ConnectionManager::get('default');
+        if($connection->update('users', ['status' => 0], ['id' => $id])){
+            $this->Flash->success('Conta desativada com sucesso. Caso queira reativar a conta, entre em contato com a administração');
+            return $this->redirect(['controller' => 'courses', 'action' => 'index']);
+        } else {
+            $this->Flash->error('Não foi possível desativar a conta. Favor entre em contato com a administração');
+        }
     }
 
 }

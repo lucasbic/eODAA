@@ -115,15 +115,26 @@ class UsersCoursesController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function contratar($user_id, $course_id){
+    public function contratar($caminho, $user_id, $course_id){
         $connection = ConnectionManager::get('default');
-        if($connection->insert('users_courses', ['user_id' => $user_id,'course_id' => $course_id,'rel_type_id' => 2])){
-            $this->Flash->success(__('Curso contratado com sucesso.'));
-            return $this->redirect(['controller' => 'Courses', 'action' => 'index']);
+        if ($caminho == 1){
+            if ($connection->update('users_courses', ['rel_type_id' => 4], ['user_id' => $user_id, 'course_id' => $course_id])){
+                $this->Flash->success(__('Curso contratado com sucesso.'));
+                return $this->redirect(['controller' => 'users', 'action' => 'favorites', $user_id]);
+            } else {
+                $this->Flash->error(__('O curso não pode ser contratado no momento. Por favor tente novamente.'));
+                return $this->redirect(['controller' => 'users', 'action' => 'favorites', $user_id]);
+            }
         } else {
-            $this->Flash->error(__('O curso não pode ser contratado no momento. Por favor tente novamente.'));
-            return $this->redirect(['controller' => 'Courses', 'action' => 'view'], $course_id);
+            if($connection->insert('users_courses', ['user_id' => $user_id,'course_id' => $course_id,'rel_type_id' => 4])){
+                $this->Flash->success(__('Curso contratado com sucesso.'));
+                return $this->redirect(['controller' => 'Courses', 'action' => 'index']);
+            } else {
+                $this->Flash->error(__('O curso não pode ser contratado no momento. Por favor tente novamente.'));
+                return $this->redirect(['controller' => 'Courses', 'action' => 'view', $course_id]);
+            }   
         }
+        
     }
 
     public function criar($user_id, $course_name){

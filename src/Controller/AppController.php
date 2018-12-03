@@ -104,6 +104,8 @@ class AppController extends Controller
         $this->set('user_id', $user_id);
         $this->user_id = $user_id;
 
+
+
         #default db connection_aborted()
         $connection = ConnectionManager::get('default');
         $this->set('connection', $connection);

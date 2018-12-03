@@ -18,19 +18,9 @@ date_default_timezone_set('America/Sao_Paulo');
 
 <nav class="large-2 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Addresses'), ['controller' => 'Addresses', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Address'), ['controller' => 'Addresses', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Access Levels'), ['controller' => 'AccessLevels', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Access Level'), ['controller' => 'AccessLevels', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Courses'), ['controller' => 'Courses', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Course'), ['controller' => 'Courses', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Educational Institutions'), ['controller' => 'EducationalInstitutions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Educational Institution'), ['controller' => 'EducationalInstitutions', 'action' => 'add']) ?> </li>
+        <li class="heading"><?= __('Menu') ?></li>
+        <li><?= $this->Html->link(__('Ver Cursos'), ['controller' => 'Courses', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('Criar Curso'), ['controller' => 'Courses', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="users view large-10 medium-8 columns content">
@@ -40,8 +30,18 @@ date_default_timezone_set('America/Sao_Paulo');
         <div class="row">
             <div class="col-md-10">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 >Perfil</h4>
+                    <div class="row">
+                        <div class="panel-heading col-sm-10">
+                            <h4>Perfil</h4>
+                        </div>
+                        <div class="panel-heading col-sm-2">
+                            <?php 
+                            if ($logged_user['access_level_id'] == 1 or $logged_user['id'] == $user->id){
+
+                            echo $this->Html->link(__('Desativar conta'), ['controller' => 'users', 'action' => 'disable', $user->id], ['confirm' => __('Você tem certeza de que deseja desativar essa conta?')]);
+
+                            }?>
+                        </div>
                     </div>
                     <div class="panel-body">
                         <div class="box box-info">
@@ -58,7 +58,8 @@ date_default_timezone_set('America/Sao_Paulo');
                                     <h4 style="color:#00b1b1;margin-bottom:0px"><?= h($user->name); ?></h4>
                                 </div>
                                 <div class="col-sm-2">
-                                    <h4><a href="/eODAA/users/edit/<?=$user->id?>">Editar Perfil</a></h4>
+                                    <h4>
+                                    <?=$this->Html->link(__('Editar Perfil'), ['controller' => 'users', 'action'=>'edit', $user_id]);?></h4>
                                 </div>
 
                                 <div class="clearfix"></div>

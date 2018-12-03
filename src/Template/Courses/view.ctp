@@ -6,11 +6,10 @@
 ?>
 <nav class="large-2 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Course'), ['action' => 'edit', $course->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Course'), ['action' => 'delete', $course->id], ['confirm' => __('Are you sure you want to delete # {0}?', $course->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Courses'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Course'), ['action' => 'add']) ?> </li>
+        <li class="heading"><?= __('Menu') ?></li>
+        <li><?= $this->Html->link(__('Editar Curso'), ['action' => 'edit', $course->id]) ?> </li>
+        <li><?= $this->Html->link(__('Ver Cursos'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('Criar Curso'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('Contratar Curso'), ['controller' => 'UsersCourses', 'action' => 'contratar', $user_id, $course->id]) ?> </li>
     </ul>
 </nav>

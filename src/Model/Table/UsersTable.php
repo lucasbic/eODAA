@@ -112,6 +112,8 @@ class UsersTable extends Table
             ->requirePresence('scholarity', 'create')
             ->notEmpty('scholarity');
 
+        
+
         return $validator;
     }
 

@@ -7,8 +7,13 @@
 <nav class="large-2 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Menu') ?></li>
-        <li><?= $this->Html->link(__('+ Criar Curso'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Criar Curso'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('Cursos Salvos'), ['controller' => 'users' , 'action' => 'favorites', $user_id])?></li>    
+        <li><?= $this->Html->link(__('Material didático'), ['action' => 'materialdidatico']) ?></li>
+
+        <li><?= $this->Html->link(__('Minha agenda (aluno)'), ['action' => 'schedulealuno']) ?></li>
+
+        <li><?= $this->Html->link(__('Minha agenda (professor)'), ['action' => 'scheduleprofessor']) ?></li>
     </ul>
 </nav>
 <div class="courses index large-10 medium-8 columns content">

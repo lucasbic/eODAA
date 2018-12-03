@@ -18,6 +18,7 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  * @property int $access_level_id
+ * @property int $status
  *
  * @property \App\Model\Entity\Address $address
  * @property \App\Model\Entity\AccessLevel $access_level
@@ -47,6 +48,7 @@ class User extends Entity
         'created' => true,
         'modified' => true,
         'access_level_id' => true,
+        'status' => true,
         'address' => true,
         'access_level' => true,
         'courses' => true,
