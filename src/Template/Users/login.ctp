@@ -9,6 +9,10 @@
                                  'Login with Facebook',
                                  ['controller' => 'Users', 'action' => 'login', '?' => ['provider' => 'Facebook']]
                                 );?>
+            <?= $this->Html->link(
+                                 'Login with Google',
+                                 ['controller' => 'Users', 'action' => 'login', '?' => ['provider' => 'Google']]
+                                );?>
 			<div class="center">
 				<?= $this->Form->submit('Login', array('class' => 'button')); ?>
 				<?= $this->Html->Link('Não possuo cadastro', ['action' => 'register'], ['class' => 'small']);?>
