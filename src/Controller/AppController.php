@@ -54,6 +54,23 @@ class AppController extends Controller
                         'username' => 'email',
                         'password' => 'password'
                     ]
+                ],
+                'ADmad/HybridAuth.HybridAuth' => [
+                    // All keys shown below are defaults
+                    'fields' => [
+                        'provider' => 'provider',
+                        'openid_identifier' => 'openid_identifier',
+                        'email' => 'email'
+                    ],
+                    'profileModel' => 'ADmad/HybridAuth.SocialProfiles',
+                    'profileModelFkField' => 'user_id',
+                    'userModel' => 'Users',
+                    'hauth_return_to' => [
+                        'controller' => 'Users',
+                        'action' => 'socail_login',
+                        'prefix' => false,
+                        'plugin' => false
+                    ]
                 ]
             ],  
             'loginAction' => [
