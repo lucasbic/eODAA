@@ -46,9 +46,9 @@
 					<?php
 					if ($course->_joinData->rel_type_id == 4){
 						echo '<span style="color:red"><b>Pagamento pendente. Clique aqui para pagar.</b></span>';
-						
+
 						<!-- Declaração do formulário -->  
-						<form method="post" target="pagseguro"  
+						echo '<form method="post" target="pagseguro"  
 						action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
 						          
 						        <!-- Campos obrigatórios -->  
@@ -91,8 +91,8 @@
 						        <input alt="Pague com PagSeguro" name="submit"  type="image"  
 						src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-pagar.gif"/>  
           
-</form>  
-						
+						</form>';  
+
 					} else {
 						echo '<span style="color:green"><b>Pagamento efetuado.</b></span>';
 					}
