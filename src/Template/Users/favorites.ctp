@@ -46,20 +46,7 @@
 					<?php
 					if ($course->_joinData->rel_type_id == 4){
 						echo '<span style="color:red"><b>Pagamento pendente. Clique aqui para pagar.</b></span>';
-
-
-					} else {
-						echo '<span style="color:green"><b>Pagamento efetuado.</b></span>';
-					}
-					?> 
-					</span>
-				</div>
-			</li>
-			<?php
-			}
-		endforeach; ?>
-	</ul>
-</div>
+						?>
 
 <form method="post" target="pagseguro"  
 action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
@@ -104,7 +91,24 @@ action="https://pagseguro.uol.com.br/v2/checkout/payment.html">
         <input alt="Pague com PagSeguro" name="submit"  type="image"  
 src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-pagar.gif"/>  
           
-</form>  					 
+</form>  		
+
+						<?php
+
+					} else {
+						echo '<span style="color:green"><b>Pagamento efetuado.</b></span>';
+					}
+					?> 
+					</span>
+				</div>
+			</li>
+			<?php
+			}
+		endforeach; ?>
+	</ul>
+</div>
+
+			 
 
 
 
