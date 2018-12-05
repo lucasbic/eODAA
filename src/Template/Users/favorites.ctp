@@ -45,7 +45,7 @@
 					<span class="bottom">
 					<?php
 					if ($course->_joinData->rel_type_id == 4){
-						echo '<span style="color:red"><b>Pagamento pendente. Clique aqui para pagar.</b></span>';
+						#echo '<span style="color:red"><b>Pagamento pendente. Clique aqui para pagar.</b></span>';
 						?>
 
 <form method="post" target="pagseguro"  
