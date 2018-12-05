@@ -52,7 +52,7 @@
 action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
           
         <!-- Campos obrigatórios -->  
-        <input name="receiverEmail" type="hidden" value="suporte@eodaa.com.br">  
+        <input name="receiverEmail" type="hidden" value="suporte@lojamodelo.com.br">  
         <input name="currency" type="hidden" value="BRL">  
   
         <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
