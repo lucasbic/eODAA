@@ -37,6 +37,12 @@
             <td><?= $this->Number->format($course->id) ?></td>
         </tr>
     </table>
+    
+     <?php echo $this->Html->link(
+        'Join the call',
+        'https://talky.io/eodaa' . $course->id,
+        ['class' => 'button', 'target' => '_blank']); ?> 
+
     <div class="related">
         <h4><?= __('Related Users') ?></h4>
         <?php if (!empty($course->users)): ?>
