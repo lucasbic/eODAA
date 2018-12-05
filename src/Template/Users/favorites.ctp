@@ -52,20 +52,20 @@
 action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
           
         <!-- Campos obrigatórios -->  
-        <input name="receiverEmail" type="hidden" value="suporte@lojamodelo.com.br">  
+        <input name="receiverEmail" type="hidden" value="suporte@eodaa.com.br">  
         <input name="currency" type="hidden" value="BRL">  
   
         <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
         <input name="itemId1" type="hidden" value="0001">  
-        <input name="itemDescription1" type="hidden" value="Notebook Prata">  
-        <input name="itemAmount1" type="hidden" value="24300.00">  
+        <input name="itemDescription1" type="hidden" value="curso">  
+        <input name="itemAmount1" type="hidden" value="243.00">  
         <input name="itemQuantity1" type="hidden" value="1">  
         <input name="itemWeight1" type="hidden" value="1000">  
         <input name="itemId2" type="hidden" value="0002">  
-        <input name="itemDescription2" type="hidden" value="Notebook Rosa">  
-        <input name="itemAmount2" type="hidden" value="25600.00">  
+        <input name="itemDescription2" type="hidden" value="curso matlab">  
+        <input name="itemAmount2" type="hidden" value="256.00">  
         <input name="itemQuantity2" type="hidden" value="2">  
-        <input name="itemWeight2" type="hidden" value="750">  
+        <input name="itemWeight2" type="hidden" value="7">  
   
         <!-- Código de referência do pagamento no seu sistema (opcional) -->  
         <input name="reference" type="hidden" value="REF1234">  
@@ -73,11 +73,11 @@ action="https://pagseguro.uol.com.br/v2/checkout/payment.html">
         <!-- Informações de frete (opcionais) -->  
         <input name="shippingType" type="hidden" value="1">  
         <input name="shippingAddressPostalCode" type="hidden" value="01452002">  
-        <input name="shippingAddressStreet" type="hidden" value="Av. Brig. Faria Lima">  
+        <input name="shippingAddressStreet" type="hidden" value="Av. Cesar Lattes">  
         <input name="shippingAddressNumber" type="hidden" value="1384">  
-        <input name="shippingAddressComplement" type="hidden" value="5o andar">  
-        <input name="shippingAddressDistrict" type="hidden" value="Jardim Paulistano">  
-        <input name="shippingAddressCity" type="hidden" value="Sao Paulo">  
+        <input name="shippingAddressComplement" type="hidden" value="4o andar">  
+        <input name="shippingAddressDistrict" type="hidden" value="Santa Inês">  
+        <input name="shippingAddressCity" type="hidden" value="São José dos Campos">  
         <input name="shippingAddressState" type="hidden" value="SP">  
         <input name="shippingAddressCountry" type="hidden" value="BRA">  
   
