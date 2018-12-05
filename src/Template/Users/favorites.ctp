@@ -48,7 +48,8 @@
 						echo '<span style="color:red"><b>Pagamento pendente. Clique aqui para pagar.</b></span>';
 
 						<!-- Declaração do formulário -->  
-						echo '<form method="post" target="pagseguro"  
+						echo <<<EOL
+						<form method="post" target="pagseguro"  
 						action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
 						          
 						        <!-- Campos obrigatórios -->  
@@ -91,7 +92,8 @@
 						        <input alt="Pague com PagSeguro" name="submit"  type="image"  
 						src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/120x53-pagar.gif"/>  
           
-						</form>';  
+						</form> 
+						EOL;  
 
 					} else {
 						echo '<span style="color:green"><b>Pagamento efetuado.</b></span>';
